@@ -1,0 +1,11 @@
+version: "2.0"
+services:
+  redis:
+    image: alexellis2/redis-arm:v6
+    networks:
+      - frontend
+#      - default
+
+networks:
+  frontend:
+    driver: overlay
