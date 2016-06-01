@@ -1,5 +1,10 @@
 version: "2.0"
 services:
+  print:
+    build ./redis_display/
+    networks:
+      - frontend
+
   redis:
     image: alexellis2/redis-arm:v6
     networks:
