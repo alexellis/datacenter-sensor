@@ -25,6 +25,8 @@ class Reporter:
     def subscribe(self):
         self.subscriber = ThreadedSubscriber(self.client, self.channels, self.on_sensor_data_cb)
         self.subscriber.run()
+    def get(self, key):
+        return self.client.get(key)
 
 class ThreadedSubscriber(threading.Thread):
     def __init__(self, client, channels, callback):
@@ -47,7 +49,8 @@ class ThreadedSubscriber(threading.Thread):
 r = Reporter("localhost", "6379")
 
 def on_sensor_data(channel, data):
-    print channel, data
+    print(channel, data)
+    print(str(r.get(data+".temp")))
 
 r.set_on_sensor_data(on_sensor_data)
 r.subscribe()
