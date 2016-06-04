@@ -1,6 +1,6 @@
 from reporting import Reporter
-from sensing import Sensors
-
+#from sensing import Sensors
+from tmp36sensing import Sensors
 import time
 
 sensors = Sensors()

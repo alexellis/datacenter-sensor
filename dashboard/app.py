@@ -4,8 +4,8 @@ from reporter import Reporter
 r = Reporter("localhost", "6379")
 
 def on_sensor_data(channel, data):
-    print channel, data
-    print r.get_key(data+".temp")
+    print(channel, data)
+    print(str(r.get_key(data+".temp")))
 
 r.set_on_sensor_data(on_sensor_data)
 r.subscribe()
