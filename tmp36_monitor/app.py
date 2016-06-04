@@ -5,7 +5,7 @@ import os
 
 host = os.getenv("REDIS_HOST")
 if(host== None):
-    host = "localhost"
+    host = "redis"
 
 sensors = Sensors()
 reporter = Reporter(host, 6379)

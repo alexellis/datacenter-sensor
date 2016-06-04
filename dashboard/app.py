@@ -4,7 +4,7 @@ import os
 
 host = os.getenv("REDIS_HOST")
 if(host== None):
-    host = "localhost"
+    host = "redis"
 
 r = Reporter(host, "6379")
 
