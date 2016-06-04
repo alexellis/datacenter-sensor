@@ -1,7 +1,12 @@
 import time
 from reporter import Reporter
+import os
 
-r = Reporter("localhost", "6379")
+host = os.getenv("REDIS_HOST")
+if(host== None):
+    host = "localhost"
+
+r = Reporter(host, "6379")
 
 def on_sensor_data(channel, data):
     print(channel, data)
