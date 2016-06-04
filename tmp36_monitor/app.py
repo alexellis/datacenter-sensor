@@ -1,9 +1,14 @@
 from reporting import Reporter
-from sensing import Sensors
+from tmp36sensing import Sensors
 import time
+import os
+
+host = os.getenv("REDIS_HOST")
+if(host== None):
+    host = "localhost"
 
 sensors = Sensors()
-reporter = Reporter("localhost", 6379)
+reporter = Reporter(host, 6379)
 reporter.announce()
 
 while(True):
