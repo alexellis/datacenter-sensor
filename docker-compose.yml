@@ -1,16 +1,19 @@
 version: "2.0"
 services:
   print:
-    build ./redis_display/
+    build: ./redis_display/
     networks:
       - frontend
-
+    ports:
+      - "9000:9000"
   redis:
     image: alexellis2/redis-arm:v6
+    ports:
+      - 6379/TCP
     networks:
       - frontend
 #      - default
 
 networks:
   frontend:
-    driver: overlay
+    driver: bridge

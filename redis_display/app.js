@@ -14,12 +14,14 @@ client.on('error', (err) => {
       console.error(err);
 });
 app.get('/', (req,res) => {
+  client.incr("node_temp", (err) => {
    client.get("node_temp", (err, val) => {
       if(err) { console.log(err); return res.end(); }
 
       res.write(val);
       res.end();
    });
+  });
 });
 
 app.listen(9000, () => {
