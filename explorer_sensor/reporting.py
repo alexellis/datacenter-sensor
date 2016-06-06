@@ -26,7 +26,7 @@ class Reporter:
 
     def set(self, values):
         self.set_key("temp", values["temp"])
-        self.set_expiring_key("temp.baseline", values["temp"], 10)
+        self.set_expiring_key("temp.baseline", values["temp"], 60)
         self.set_key("motion", values["temp"])
 
     def publish(self):
