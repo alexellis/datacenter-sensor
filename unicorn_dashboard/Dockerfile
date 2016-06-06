@@ -1,6 +1,6 @@
 FROM alexellis2/unicorn-hat:dev
 RUN sudo pip install redis
 
-ADD app.py ./
+ADD *.py ./
 
-CMD ["sudo", "python2", "app.py"]
+CMD ["sudo","-E", "python2", "app.py"]
