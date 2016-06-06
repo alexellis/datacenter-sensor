@@ -14,17 +14,22 @@ UH.show()
 
 r = Reporter(host, "6379")
 
+def on(r,g,b):
+    for x in range(0,4):
+        for y in range(0,11):
+            UH.set_pixel(x,y,r,g,b)
+
 def on_sensor_data(channel, data):
     print(channel, data)
     value = float(r.get_key(data+".temp"))
     baseline = float(r.get_key(data+".temp.baseline"))
-    print(str(val) + " ~ " + str(baseline))
-    diff = abs(val - baseline)
+    diff = abs(value - baseline)
+    print(str(value) + " ~ " + str(baseline) + " = " + str(diff))
 
-    if(diff < 1):
-        UH.set_pixel( 0, 0,178,255,34)
+    if(diff < 1.5):
+        on(0,255,0)
     else:
-        UH.set_pixel( 0, 0,178,34,34)
+        on(255,0,0)
 
     UH.show()
 
