@@ -12,7 +12,13 @@ class Reporter:
        self.channels = ["sensors.data", "members.add"]
 
     def find_members(self):
-       return self.client.hgetall("members")
+       members = self.client.hgetall("members")
+       live = []
+
+       for member in members:
+           if(self.client.get(member+".live")):
+               live.push(member)
+       return live
 
     def on_message(self, channel, message):
         print("Channel: "+channel + " - " + message )
@@ -24,5 +30,6 @@ class Reporter:
     def subscribe(self):
         self.subscriber = ThreadedSubscriber(self.client, self.channels, self.on_sensor_data_cb)
         self.subscriber.run()
+
     def get_key(self, key):
         return self.client.get(key)

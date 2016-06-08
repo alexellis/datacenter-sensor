@@ -21,17 +21,23 @@ def on(r,g,b):
 
 def on_sensor_data(channel, data):
     print(channel, data)
-    value = float(r.get_key(data+".temp"))
-    baseline = float(r.get_key(data+".temp.baseline"))
-    diff = abs(value - baseline)
-    print(str(value) + " ~ " + str(baseline) + " = " + str(diff))
+    value = r.get_key(data+".temp")
+    baseline = r.get_key(data+".temp.baseline")
+    print(baseline,value)
+    if(baseline != None and value != None):
+        baseline = round(float(baseline), 2)
+        value = round(float(value), 2)
 
-    if(diff < 1.5):
-        on(0,255,0)
-    else:
-        on(255,0,0)
+        diff = abs(value - baseline)
+        print(str(value) + " ~ " + str(baseline) + " = " + str(diff))
 
-    UH.show()
+        if(diff < 1.5):
+            on(0,255,0)
+        else:
+            on(255,0,0)
+
+        UH.show()
+
 
 r.set_on_sensor_data(on_sensor_data)
 r.subscribe()
