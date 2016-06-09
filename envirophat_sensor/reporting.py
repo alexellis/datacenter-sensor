@@ -34,7 +34,9 @@ class Reporter:
 
         self.set_key("temp", values["temp"])
         self.set_expiring_key("temp.baseline", round(values["temp"], 2), 60)
-        self.set_key("motion", values["temp"])
+
+        self.set_expiring_key("motion", values["motion"], 5)
+
 
     def publish(self):
         self.client.publish("sensors.data", self.name)
