@@ -21,6 +21,12 @@ def on(r,g,b):
 
 def on_sensor_data(channel, data):
     print(channel, data)
+    motion = r.get_key(data+".motion")
+    if(motion != None and float(motion) > 0):
+        on(0,0,255)
+        UH.show()
+        return
+
     value = r.get_key(data+".temp")
     baseline = r.get_key(data+".temp.baseline")
     print(baseline,value)
