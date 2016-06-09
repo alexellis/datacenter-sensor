@@ -11,6 +11,6 @@ class Sensors:
 
     def read(self):
         degrees = self.sensor.read_temperature()
-        self.motion = motion_sense.read()
+        self.motion = self.motion_sense.read()
 
         return {"temp": degrees, "motion":self.motion}
