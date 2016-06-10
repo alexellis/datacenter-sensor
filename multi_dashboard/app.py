@@ -37,6 +37,7 @@ def is_hot(temp, baseline):
     return diff > baseline_threshold
 
 def paint():
+    global last_members
     index = 0
     members = r.find_members()
     if(len(last_members) != len(members)):
