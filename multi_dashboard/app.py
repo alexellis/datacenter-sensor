@@ -26,6 +26,7 @@ def on(column, r,g,b):
 def safeFloat(motion):
     if motion != None:
         return float(motion)
+
 def is_hot(temp, baseline):
     diff = 0
     if(temp != None and baseline != None):
@@ -59,8 +60,6 @@ def paint():
         else:
             on(index, 0, 255, 0)
         index = index +1
-        
-
 
 def on_sensor_data(channel, data):
     print(channel, data)
