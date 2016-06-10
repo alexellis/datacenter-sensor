@@ -9,7 +9,7 @@ host = os.getenv("REDIS_HOST")
 baseline_threshold = 0.5
 
 if(host == None):
-    host = "localhost"
+    host = "redis"
 
 UH.clear()
 UH.show()
