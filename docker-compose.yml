@@ -1,5 +1,14 @@
 version: "2.0"
 services:
+  unicorndashboard:
+    build:
+      context: "./multi_dashboard/"
+    networks:
+      - frontend
+    privileged: true
+    environment:
+#      - "constraint:dashboard==1"
+      - "affinity:demo.dashboard==1"
   sensor:
     build:
       context: "./envirophat_sensor/"
@@ -7,16 +16,8 @@ services:
       - frontend
     privileged: true
     environment:
-      - "affinity:container!=datacenter_sensor_sensor_*"
-      - "affinity:sensor=1"
-  dashboard:
-    build:
-      context: "./multi_dashboard/"
-    networks:
-      - frontend
-    privileged: true
-    environment:
-      - "affinity:dashboard=1"
+      - "affinity:container!=datacentersensor_sensor_*"
+      - "constraint:sensor==1"
   redis:
     image: alexellis2/redis-arm:v6
     ports:
