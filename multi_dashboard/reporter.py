@@ -31,5 +31,8 @@ class Reporter:
         self.subscriber = ThreadedSubscriber(self.client, self.channels, self.on_sensor_data_cb)
         self.subscriber.run()
 
+    def set_key(self, key, value):
+        self.client.set(key, value)
+
     def get_key(self, key):
         return self.client.get(key)

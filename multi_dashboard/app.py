@@ -90,7 +90,11 @@ def on_sensor_data(channel, data):
 
 r.set_on_sensor_data(on_sensor_data)
 r.subscribe()
+r.set_key("baseline_threshold", baseline_threshold)
 
 while True:
     print (r.find_members())
-    time.sleep(5)
+    temp = r.get_key(baseline_threshold)
+    if(temp!=None):
+        baseline_threshold = float(baseline_threshold)
+    time.sleep(1)

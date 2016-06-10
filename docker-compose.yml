@@ -1,19 +1,29 @@
 version: "2.0"
 services:
-  print:
-    build: ./redis_display/
+  sensor:
+    build:
+      context: "./envirophat_sensor/"
     networks:
       - frontend
-    ports:
-      - "9000:9000"
+    privileged: true
+    environment:
+      - "affinity:container!=datacenter_sensor_sensor_*"
+      - "affinity:sensor=1"
+  dashboard:
+    build:
+      context: "./multi_dashboard/"
+    networks:
+      - frontend
+    privileged: true
+    environment:
+      - "affinity:dashboard=1"
   redis:
     image: alexellis2/redis-arm:v6
     ports:
       - 6379/TCP
     networks:
       - frontend
-#      - default
 
 networks:
   frontend:
-    driver: bridge
+    driver: overlay
