@@ -17,9 +17,9 @@ def on(column, r,g,b):
     for x in range(0,4):
         y = column    
         UH.set_pixel(x,y,r,g,b)
-def safeInt(motion):
+def safeFloat(motion):
     if motion != None:
-        return int(motion)
+        return float(motion)
 
 def paint():
     index = 0
