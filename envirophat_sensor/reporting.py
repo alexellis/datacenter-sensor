@@ -33,7 +33,7 @@ class Reporter:
         self.set_live()
 
         self.set_key("temp", values["temp"])
-        self.set_expiring_key("temp.baseline", round(values["temp"], 2), 60)
+        self.set_expiring_key("temp.baseline", round(values["temp"], 2), 90)
 
         self.set_expiring_key("motion", values["motion"], 5)
 
