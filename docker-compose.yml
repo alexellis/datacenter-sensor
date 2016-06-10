@@ -8,7 +8,7 @@ services:
     privileged: true
     environment:
 #      - "constraint:dashboard==1"
-      - "affinity:demo.dashboard==1"
+      - "constraint:demo.dashboard==1"
   sensor:
     build:
       context: "./envirophat_sensor/"

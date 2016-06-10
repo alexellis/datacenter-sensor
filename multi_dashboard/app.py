@@ -5,7 +5,7 @@ import unicornhat as UH
 
 UH.set_layout(UH.PHAT)
 
-host = os.environ["REDIS_HOST"]
+host = os.getenv("REDIS_HOST")
 baseline_threshold = 0.5
 
 if(host == None):
