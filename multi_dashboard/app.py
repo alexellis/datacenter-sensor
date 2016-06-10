@@ -15,6 +15,7 @@ UH.clear()
 UH.show()
 
 r = Reporter(host, "6379")
+last_members = []
 
 def on(column, r,g,b):
     x = column
@@ -38,6 +39,11 @@ def is_hot(temp, baseline):
 def paint():
     index = 0
     members = r.find_members()
+    if(len(last_members) != len(members)):
+        UC.clear()
+        UC.show()
+
+    last_members = members
     for member in members:
         temp = r.get_key(member + ".temp")
         baseline = r.get_key(member + ".temp.baseline")
