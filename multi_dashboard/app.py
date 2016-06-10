@@ -29,10 +29,10 @@ def safeFloat(motion):
 def is_hot(temp, baseline):
     diff = 0
     if(baseline != None and temp != None):
-        baseline = round(float(baseline), 2)
-        value = round(float(temp), 2)
+        baseline_float = round(float(baseline), 2)
+        temp_float = round(float(temp), 2)
 
-        diff = abs(temp - baseline)
+        diff = abs(temp_float - baseline_float)
     return diff > baseline_threshold
 
 def paint():
