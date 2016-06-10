@@ -19,7 +19,6 @@ r = Reporter(host, "6379")
 def on(column, r,g,b):
     x = column
     for y in range(0, 4):
-        print(str(x) + "," + str(y))
         UH.set_pixel(x, y, r, g, b)
     UH.show()
 
@@ -33,7 +32,7 @@ def is_hot(temp, baseline):
         temp_float = round(float(temp), 2)
 
         diff = abs(temp_float - baseline_float)
-        print(str(diff))
+        print(str(diff) + " "+  str(temp_float) + " " + str(baseline_float))
     return diff > baseline_threshold
 
 def paint():
@@ -43,6 +42,7 @@ def paint():
         temp = r.get_key(member + ".temp")
         baseline = r.get_key(member + ".temp.baseline")
         motion = r.get_key(member + ".motion")
+
         if safeFloat(motion) > 0:
             on(index, 0, 0, 255)
         elif is_hot(temp, baseline):
