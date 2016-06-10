@@ -7,10 +7,10 @@ class Reporter:
        self.port = port
 
        self.name = socket.getfqdn()
-       self.live_expiry = 30
+       self.live_expiry = 300
 
     def set_live(self):
-        self.set_expiring_key("live", "1", 30)
+        self.set_expiring_key("live", "1", self.live_expiry)
         # self.client.setex(self.name+".live", self.live_expiry, "1")
 
     def announce(self):
@@ -36,7 +36,7 @@ class Reporter:
         self.set_live()
 
         self.set_key("temp", values["temp"])
-        self.set_expiring_key("temp.baseline", round(values["temp"], 2), 90)
+        self.set_expiring_key("temp.baseline", round(values["temp"], 2), 300)
 
         self.set_expiring_key("motion", values["motion"], 5)
 

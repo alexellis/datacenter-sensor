@@ -6,9 +6,9 @@ import unicornhat as UH
 UH.set_layout(UH.PHAT)
 
 host = os.environ["REDIS_HOST"]
-baseline_threshold = 1.0
+baseline_threshold = 0.5
 
-if(host== None):
+if(host == None):
     host = "localhost"
 
 UH.clear()
