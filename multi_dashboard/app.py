@@ -41,8 +41,8 @@ def paint():
     index = 0
     members = r.find_members()
     if(len(last_members) != len(members)):
-        UC.clear()
-        UC.show()
+        UH.clear()
+        UH.show()
 
     last_members = members
     for member in members:
