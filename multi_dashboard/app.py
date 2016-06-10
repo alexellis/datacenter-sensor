@@ -14,9 +14,10 @@ UH.show()
 r = Reporter(host, "6379")
 
 def on(column, r,g,b):
+    y = column
     for x in range(0,4):
-        y = column    
-        UH.set_pixel(x,y,r,g,b)
+        UH.set_pixel(y, x, r, g, b)
+    UH.show()
 def safeFloat(motion):
     if motion != None:
         return float(motion)
@@ -28,7 +29,7 @@ def paint():
         temp = r.get_key(member + ".temp")
         baseline = r.get_key(member + ".temp.baseline")
         motion = r.get_key(member + ".motion")
-        if safeInt(motion) > 0:
+        if safeFloat(motion) > 0:
             on(index, 0, 0, 255)
         else:
             on(index, 0, 255, 0)
