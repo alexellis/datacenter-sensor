@@ -17,7 +17,7 @@ class Reporter:
 
        for member in members:
            if(self.client.get(member+".live")):
-               live.push(member)
+               live.append(member)
        return live
 
     def on_message(self, channel, message):
