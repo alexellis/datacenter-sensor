@@ -8,7 +8,7 @@ host = os.getenv("REDIS_HOST")
 if(host== None):
     host = "redis"
 
-sample_rate = 0.5
+sample_rate = 0.25
 
 sensors = Sensors()
 reporter = Reporter(host, 6379)
