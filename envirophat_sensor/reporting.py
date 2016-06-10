@@ -10,7 +10,8 @@ class Reporter:
        self.live_expiry = 30
 
     def set_live(self):
-        self.client.setex(self.name+".live", self.live_expiry, "1")
+        set_expiring_key("live", "1", 30)
+        # self.client.setex(self.name+".live", self.live_expiry, "1")
 
     def announce(self):
         self.client = redis.StrictRedis(host=self.host, port=self.port, db=0)
