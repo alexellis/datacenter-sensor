@@ -3,6 +3,8 @@ from reporter import Reporter
 import os
 import unicornhat as UH
 
+UH.set_layout(UH.PHAT)
+
 host = os.environ["REDIS_HOST"]
 
 if(host== None):
@@ -14,10 +16,12 @@ UH.show()
 r = Reporter(host, "6379")
 
 def on(column, r,g,b):
-    y = column
-    for x in range(0,4):
-        UH.set_pixel(y, x, r, g, b)
+    x = column
+    for y in range(0, 4):
+        print(str(x) + "," + str(y))
+        UH.set_pixel(x, y, r, g, b)
     UH.show()
+
 def safeFloat(motion):
     if motion != None:
         return float(motion)
@@ -33,7 +37,7 @@ def paint():
             on(index, 0, 0, 255)
         else:
             on(index, 0, 255, 0)
-    index = index +1
+        index = index +1
         
 
 
