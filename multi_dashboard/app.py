@@ -6,6 +6,7 @@ import unicornhat as UH
 UH.set_layout(UH.PHAT)
 
 host = os.environ["REDIS_HOST"]
+baseline_threshold = 1.5
 
 if(host== None):
     host = "localhost"
@@ -25,6 +26,14 @@ def on(column, r,g,b):
 def safeFloat(motion):
     if motion != None:
         return float(motion)
+def is_hot(temp, baseline):
+    diff = 0
+    if(baseline != None and temp != None):
+        baseline = round(float(baseline), 2)
+        value = round(float(temp), 2)
+
+        diff = abs(temp - baseline)
+    return diff > baseline_threshold
 
 def paint():
     index = 0
@@ -35,6 +44,8 @@ def paint():
         motion = r.get_key(member + ".motion")
         if safeFloat(motion) > 0:
             on(index, 0, 0, 255)
+        elif is_hot(temp, baseline):
+            on(index, 255, 0, 0)
         else:
             on(index, 0, 255, 0)
         index = index +1
