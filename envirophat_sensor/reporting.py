@@ -23,6 +23,10 @@ class Reporter:
         print(key,value)
         self.client.set(self.name+"."+key, round(value, 2))
 
+    def overset_expiring_key(self, key, value, timeout):
+        self.client.set(self.name+"."+key, value)
+        self.client.expire(self.name+"."+key, timeout)  
+
     def set_expiring_key(self, key, value, timeout):
         print(key, value, timeout)
 
@@ -38,7 +42,7 @@ class Reporter:
         self.set_key("temp", values["temp"])
         self.set_expiring_key("temp.baseline", round(values["temp"], 2), 300)
 
-        self.set_expiring_key("motion", values["motion"], 5)
+        self.overset_expiring_key("motion", values["motion"], 5)
 
 
     def publish(self):
