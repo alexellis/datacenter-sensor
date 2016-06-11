@@ -24,3 +24,48 @@ Come to the live demo at Dockercon for all the rest of the details. We'll have a
 ### See also: original Dockercon hack entry
 
 [Visualizing a production-ready load-balancer with LEDs and Docker Swarm](http://blog.alexellis.io/iot-docker-cluster/)
+
+### Booting up the demo
+
+#### Step 1
+
+Start the Docker Swarm manager and supporting consul KeyValueStore
+
+```
+$ datacenter-sensor/start_manage.sh
+```
+
+#### Step 2
+
+Start the Swarm Agents on each sensor Pi Zero
+
+```
+$ datacenter-sensor/join/auto_join.sh
+```
+
+> The Consul IP address has to be hard-coded into the systemd docker.service file and this batch file.
+
+#### Step 3
+
+Enter: Docker-compose
+
+Point the DOCKER_HOST environmental variable to the swarm manager and type in:
+
+```
+$ export DOCKER_HOST=tcp://manager1.local:2376
+
+$ docker-compose up -d
+```
+
+#### Step 4
+
+Profit.
+
+### Sneak previews:
+
+Descending date of release.
+
+* [Scaling-up monitoring two sensors](https://twitter.com/alexellisuk/status/741224768087674880)
+* [Detecting motion](https://twitter.com/alexellisuk/status/740824510849503232)
+* [Detecting temperature and showing alerts](https://twitter.com/alexellisuk/status/739736197442981888)
+* [Unicorn pHAT making rainbows](https://twitter.com/alexellisuk/status/739557889854066688)
