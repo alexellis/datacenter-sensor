@@ -5,13 +5,13 @@
 
 This repository supports [my Dockercon talk and demo](http://dockercon2016.sched.org/event/6CF1)
 
-![Swag](https://c3.staticflickr.com/8/7126/27279846650_da0c806fc1_c.jpg)
-
 > **Docker and IoT securing the server-room with realtime microservices by Alex Ellis**
 
 > In this hack, we secure the data-center through a scaleable network of real-time sensors and microservices running Docker. Each rack in the server-room is filled with thousands of terabytes of priceless customer data, IoT lets us keep one step ahead and keep that data safe. The cluster deploys a set of smart sensors running the Docker Swarm agent to the rack panels.
 
 > Each sensor constantly samples the ambient temperature of the rack and sends a real-time alarm to the control room when levels rise above normal levels. An anti-tamper motion sensor picks up tiny vibrations and alerts the admins when someone is performing unscheduled maintenance on the equipment. A custom made RGB LED display made by Pimoroni for Dockercon shows the status of up to 8 racks in real-time.
+
+![Swag](https://c3.staticflickr.com/8/7126/27279846650_da0c806fc1_c.jpg)
 
 ### Producing the Hack
 
