@@ -39,8 +39,8 @@ def home():
 
 if __name__ == '__main__':
     print("0.0.0.0")
-    app.run(debug=True, host='0.0.0.0')
     r = Reporter(host, 6379)
     r.set_on_sensor_data(on_sensor_data)
-
     r.subscribe()
+    app.run(debug=True, host='0.0.0.0')
+
