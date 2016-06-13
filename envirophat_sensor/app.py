@@ -24,7 +24,7 @@ else:
 sample_rate = 0.25
 
 sensors = Sensors()
-reporter = Reporter(host, 6379)
+reporter = Reporter(host, 6379, quiet)
 reporter.announce()
 
 host = reporter.get_name()
