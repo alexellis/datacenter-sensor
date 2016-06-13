@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+	<div class="list-group">
+		<table>
+                        <tr>
+				<td>Name</td>
+				<td>Temp</td>
+				<td>Baseline temp</td>
+				<td>Motion</td>
+			</td>
+		  {% for host in hosts %}
+			<tr>
+				<td>{{host["name"]}}</td>
+				<td>{{host["temp"]}}</td>
+				<td>{{host["temp.baseline"]}}</td>
+				<td>{{host["motion"]}}</td>
+			</tr>
+		  {% endfor %}
+		</table>
+	</div>
+{% endblock %}

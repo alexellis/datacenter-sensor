@@ -10,28 +10,30 @@ if(host == None):
     host = "redis"
 
 app = Flask(__name__)
-cache = {}
-last_members = []
 r = Reporter(host, 6379)
 
-def build_cache(cache):
-    global last_members
-
+def build_cache():
+    cache = []
     members = r.find_members()
-    if(len(last_members) != len(members)):
-        cache.clear()
 
     for member in members:
-        cache[member]= {}
-        cache[member]["temp"] = r.get_key(member + ".temp")
-        cache[member]["temp.baseline"] = r.get_key(member + ".temp.baseline")
-        cache[member]["motion"] = r.get_key(member + ".motion")
-    last_members = members
+        item = {}
+        item["name"] = member
+        item["temp"] = r.get_key(member + ".temp")
+        item["temp.baseline"] = r.get_key(member + ".temp.baseline")
+        item["motion"] = r.get_key(member + ".motion")
+        cache.append(item)
+    return cache
+
+@app.route('/json', methods=['GET'])
+def home_json():
+    cache = build_cache()
+    return json.dumps({"sensors": cache})
 
 @app.route('/', methods=['GET'])
 def home():
-    build_cache(cache)
-    return json.dumps({"sensors": cache})
+    hosts = build_cache()
+    return render_template("nodes.html", hosts=hosts)
 
 if __name__ == '__main__':
     print("0.0.0.0")
