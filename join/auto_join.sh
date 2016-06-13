@@ -3,7 +3,7 @@
 # Usage: auto_join_swarm.sh <consul_ip:port>
 # Default: auto_join_swarm.sh 192.168.0.200:8500
 
-export consul_addr=192.168.0.38:8500
+export consul_addr=192.168.0.110:8500
 
 if [ ! -z $1 ]; then
 	export consul_addr=$1:8500
