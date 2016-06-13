@@ -3,7 +3,7 @@ from reporter import Reporter
 import os
 import unicornhat as UH
 
-UH.set_layout(UH.PHAT)
+# UH.set_layout(UH.PHAT)
 
 host = os.getenv("REDIS_HOST")
 baseline_threshold = 0.5
