@@ -16,6 +16,7 @@ reporter = Reporter(host, 6379)
 reporter.announce()
 
 host = reporter.get_host()
+blinkt = Blinkt(host)
 
 def safeFloat(motion):
     if motion != None:
