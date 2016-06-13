@@ -14,10 +14,11 @@ if(baseline_threshold != None):
     baseline_threshold = float(baseline_threshold)
 else:
     baseline_threshold = 0.5
+
 quiet = os.getenv("QUIET")
 if(quiet!=None):
     quiet = True
-else
+else:
     quiet = False
 
 sample_rate = 0.25
