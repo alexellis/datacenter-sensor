@@ -56,11 +56,16 @@ def get_status_color(blinkt, output):
     	rgb = blinkt.to_rgb(0, 255, 0)
     return rgb
 
+def off():
+    off = blinkt.to_rgb(0, 0, 0)
+    for x in range(0, 8):
+        blinkt.show(x, off)
+
 def welcome():
     on = blinkt.to_rgb(0, 0, 255)
     for x in range(0, 8):
         blinkt.show(x, on)
-        time.sleep(0.1)
+        time.sleep(0.2)
     off = blinkt.to_rgb(0, 0, 0)
     for x in range(0, 8):
         blinkt.show(x, off)
@@ -82,8 +87,11 @@ def read_write_loop():
     blinkt.show_all(color)
 
 if(__name__ == "__main__"):
+    off()
     welcome()
-
-    while(True):
-        read_write_loop()
-        time.sleep(sample_rate)
+    try:
+        while(True):
+            read_write_loop()
+            time.sleep(sample_rate)
+    except:
+        off()
