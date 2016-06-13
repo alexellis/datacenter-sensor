@@ -46,7 +46,8 @@ def is_hot(temp, baseline):
         temp_float = round(float(temp), 2)
 
         diff = abs(temp_float - baseline_float)
-        print("["+str(diff) + "] "+  str(temp_float) + " - " + str(baseline_float))
+        if(quiet == False):
+            print("["+str(diff) + "] "+  str(temp_float) + " - " + str(baseline_float))
     return diff > baseline_threshold
 
 def paint():
@@ -64,11 +65,13 @@ def paint():
         motion = r.get_key(member + ".motion")
 
         if safeFloat(motion) > 0:
-            print("moved")
+            if(quiet == False):
+                print("moved")
             on(index, 0, 0, 255)
         elif is_hot(temp, baseline):
             on(index, 255, 0, 0)
-            print("HOT")
+            if(quiet == False):
+                print("HOT")
         else:
             on(index, 0, 255, 0)
         index = index +1
@@ -82,6 +85,7 @@ r.set_on_sensor_data(on_sensor_data)
 r.subscribe()
 
 while True:
-    print (r.find_members())
+    if(quiet == False):
+        print (r.find_members())
     time.sleep(1)
 

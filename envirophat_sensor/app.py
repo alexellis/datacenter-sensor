@@ -41,7 +41,8 @@ def is_hot(temp, baseline):
         baseline_float = round(float(baseline), 2)
         temp_float = round(float(temp), 2)
         diff = abs(temp_float - baseline_float)
-        print("["+str(diff) + "] "+  str(temp_float) + " - " + str(baseline_float))
+        if(quiet == False):
+            print("["+str(diff) + "] "+  str(temp_float) + " - " + str(baseline_float))
     return diff > baseline_threshold
 
 def get_status_color(blinkt, output):
