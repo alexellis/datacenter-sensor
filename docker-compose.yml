@@ -16,6 +16,7 @@ services:
     privileged: true
     environment:
       - "constraint:demo.dashboard==1"
+      - QUIET=True
     depends_on:
       - redis
 

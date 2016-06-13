@@ -20,7 +20,7 @@ else:
 quiet = os.getenv("QUIET")
 if(quiet!=None):
     quiet = True
-else
+else:
     quiet = False
 
 UH.clear()
