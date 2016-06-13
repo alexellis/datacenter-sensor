@@ -1,5 +1,6 @@
 from reporting import Reporter
 from sensing import Sensors
+from blinkt import Blinkt
 
 import time
 import os
@@ -19,4 +20,7 @@ while(True):
     print(output)
     reporter.set(output)
     reporter.publish()
+
+    blinkt.show(output)
+
     time.sleep(sample_rate)
