@@ -4,6 +4,8 @@ from blinkt import Blinkt
 
 import time
 import os
+import signal
+import sys
 
 host = os.getenv("REDIS_HOST")
 if(host== None):
@@ -30,6 +32,11 @@ reporter.announce()
 host = reporter.get_name()
 blinkt = Blinkt(host)
 
+def sigterm_handler(_signo, _stack_frame):
+    off()
+    sys.exit(0)
+
+signal.signal(signal.SIGTERM, sigterm_handler)
 
 def safeFloat(motion):
     if motion != None:
