@@ -10,6 +10,18 @@ services:
     environment:
       - "constraint:demo.dashboard==1"
 
+  webdashboard:
+    build:
+      context: "./webdashboard/"
+    networks:
+      - frontend
+    privileged: true
+    environment:
+      - "constraint:demo.dashboard==1"
+      - QUIET=True
+    depends_on:
+      - redis
+
   unicorndashboard:
     build:
       context: "./multi_dashboard/"
