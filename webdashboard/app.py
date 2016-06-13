@@ -28,7 +28,9 @@ def build_cache(cache):
     last_members = members
 
 def on_sensor_data(channel, data):
+    print(".")
     build_cache(cache)
+    print("-")
 
 r = Reporter(host, 6379)
 
@@ -37,10 +39,9 @@ r.subscribe()
 
 @app.route('/', methods=['GET'])
 def home():
+    print("/")
     return json.dumps({"sensors": cache})
 
-
-
 if __name__ == '__main__':
-
+    print("0.0.0.0")
     app.run(debug=True, host='0.0.0.0')

@@ -7,4 +7,3 @@ ADD ./*.py ./
 EXPOSE 5000
 
 CMD ["sudo", "-E", "python", "app.py"]
-
