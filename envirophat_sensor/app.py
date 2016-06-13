@@ -34,7 +34,7 @@ blinkt = Blinkt(host)
 
 def sigterm_handler(_signo, _stack_frame):
     off()
-    reporting.delete_key(host+".live")
+    # reporting.delete_key(host+".live") # too late to handle this, redis may be down.
     sys.exit(0)
 
 signal.signal(signal.SIGTERM, sigterm_handler)
