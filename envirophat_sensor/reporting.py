@@ -9,6 +9,12 @@ class Reporter:
        self.name = socket.getfqdn()
        self.live_expiry = 300
 
+    def get_host(self):
+        return self.host
+
+    def get_key(self, key):
+        return self.client.get(key)
+
     def set_live(self):
         self.set_expiring_key("live", "1", self.live_expiry)
         # self.client.setex(self.name+".live", self.live_expiry, "1")
