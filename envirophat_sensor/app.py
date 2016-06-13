@@ -14,6 +14,11 @@ if(baseline_threshold != None):
     baseline_threshold = float(baseline_threshold)
 else:
     baseline_threshold = 0.5
+quiet = os.getenv("QUIET")
+if(quiet!=None):
+    quiet = True
+else
+    quiet = False
 
 sample_rate = 0.25
 
@@ -50,7 +55,9 @@ def get_status_color(blinkt, output):
 
 while(True):
     output = sensors.read()
-    print(output)
+    if(self.quiet == False):
+        print(output)
+
     reporter.set(output)
     reporter.publish()
 

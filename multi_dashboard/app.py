@@ -17,6 +17,12 @@ if(baseline_threshold != None):
 else:
     baseline_threshold = 0.5
 
+quiet = os.getenv("QUIET")
+if(quiet!=None):
+    quiet = True
+else
+    quiet = False
+
 UH.clear()
 UH.show()
 
@@ -68,7 +74,8 @@ def paint():
         index = index +1
 
 def on_sensor_data(channel, data):
-    print(channel, data)
+    if(quiet == False):
+        print(channel, data)
     paint()
 
 r.set_on_sensor_data(on_sensor_data)

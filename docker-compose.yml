@@ -28,9 +28,10 @@ services:
     environment:
       - "affinity:container!=datacentersensor_sensor_*"
       - "constraint:sensor==1"
+      - TEMP_THRESHOLD=0.8
+      - QUIET=True
     depends_on:
       - redis
-
 networks:
   frontend:
     driver: overlay

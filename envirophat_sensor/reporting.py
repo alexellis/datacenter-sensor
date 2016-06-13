@@ -2,12 +2,13 @@ import redis
 import socket
 
 class Reporter:
-    def __init__(self, host, port):
+    def __init__(self, host, port, quiet):
        self.host = host
        self.port = port
 
        self.name = socket.getfqdn()
        self.live_expiry = 300
+       self.quiet = quiet
 
     def get_name(self):
         return self.name
@@ -25,7 +26,9 @@ class Reporter:
         self.client.publish("members.add", self.name)
 
     def set_key(self, key, value):
-        print(key,value)
+        if(self.quiet == False):
+            print(key, value)
+
         self.client.set(self.name+"."+key, round(value, 2))
 
     def overset_expiring_key(self, key, value, timeout):
@@ -37,7 +40,9 @@ class Reporter:
 
         exists = self.client.get(self.name+"."+key)
         if(exists==None):
+            if(self.quiet == False):
             print(key+ ", value=" + str(value))
+
             self.client.set(self.name+"."+key, value)
             self.client.expire(self.name+"."+key, timeout)
 
