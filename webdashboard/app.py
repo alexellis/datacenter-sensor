@@ -12,6 +12,7 @@ if(host == None):
 app = Flask(__name__)
 cache = {}
 last_members = []
+r = Reporter(host, 6379)
 
 def build_cache(cache):
     global last_members
@@ -27,20 +28,12 @@ def build_cache(cache):
         cache[member]["motion"] = r.get_key(member + ".motion")
     last_members = members
 
-def on_sensor_data(channel, data):
-    print(".")
-    build_cache(cache)
-    # print("-")
-
 @app.route('/', methods=['GET'])
 def home():
-    print("/")
+    build_cache(cache)
     return json.dumps({"sensors": cache})
 
 if __name__ == '__main__':
     print("0.0.0.0")
-    r = Reporter(host, 6379)
-    r.set_on_sensor_data(on_sensor_data)
-    r.subscribe()
     app.run(debug=True, host='0.0.0.0')
 
