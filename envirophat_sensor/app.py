@@ -56,7 +56,7 @@ def get_status_color(blinkt, output):
 
 while(True):
     output = sensors.read()
-    if(self.quiet == False):
+    if(quiet == False):
         print(output)
 
     reporter.set(output)
