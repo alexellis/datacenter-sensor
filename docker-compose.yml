@@ -33,6 +33,7 @@ services:
     environment:
       - "constraint:demo.dashboard==1"
       - QUIET=True
+      - TEMP_THRESHOLD=0.8
     depends_on:
       - redis
 
