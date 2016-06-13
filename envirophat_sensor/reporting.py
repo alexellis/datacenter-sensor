@@ -36,7 +36,8 @@ class Reporter:
         self.client.expire(self.name+"."+key, timeout)  
 
     def set_expiring_key(self, key, value, timeout):
-        print(key, value, timeout)
+        if(self.quiet == False):
+            print(key, value, timeout)
 
         exists = self.client.get(self.name+"."+key)
         if(exists==None):
