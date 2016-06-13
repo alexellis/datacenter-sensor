@@ -1,5 +1,7 @@
+import os
 from flask import Flask, request, render_template
 import redis
+from reporter import Reporter
 
 import json
 
@@ -11,20 +13,24 @@ app = Flask(__name__)
 cache = {}
 last_members = []
 
-def build_cache():
+def build_cache(cache):
+    global last_members
+
     members = r.find_members()
     if(len(last_members) != len(members)):
-        cache = {}
+        cache.clear()
 
-    last_members = members
     for member in members:
         cache[member]= {}
         cache[member]["temp"] = r.get_key(member + ".temp")
         cache[member]["temp.baseline"] = r.get_key(member + ".temp.baseline")
         cache[member]["motion"] = r.get_key(member + ".motion")
+    last_members = members
 
 def on_sensor_data(channel, data):
-    build_cache()
+    build_cache(cache)
+
+r = Reporter(host, 6379)
 
 r.set_on_sensor_data(on_sensor_data)
 r.subscribe()
@@ -32,3 +38,9 @@ r.subscribe()
 @app.route('/', methods=['GET'])
 def home():
     return json.dumps({"sensors": cache})
+
+
+
+if __name__ == '__main__':
+
+    app.run(debug=True, host='0.0.0.0')
