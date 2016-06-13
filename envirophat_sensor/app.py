@@ -30,6 +30,7 @@ reporter.announce()
 host = reporter.get_name()
 blinkt = Blinkt(host)
 
+
 def safeFloat(motion):
     if motion != None:
         return float(motion)
@@ -55,7 +56,17 @@ def get_status_color(blinkt, output):
     	rgb = blinkt.to_rgb(0, 255, 0)
     return rgb
 
-while(True):
+def welcome():
+    on = blinkt.to_rgb(0, 0, 255)
+    for x in range(0, 8):
+        blinkt.show(x, on)
+        time.sleep(0.1)
+    off = blinkt.to_rgb(0, 0, 0)
+    for x in range(0, 8):
+        blinkt.show(x, off)
+        time.sleep(0.1)
+
+def read_write_loop():
     output = sensors.read()
     if(quiet == False):
         print(output)
@@ -70,4 +81,9 @@ while(True):
     color = get_status_color(blinkt, output)
     blinkt.show_all(color)
 
-    time.sleep(sample_rate)
+if(__name__ == "__main__"):
+    welcome()
+
+    while(True):
+        read_write_loop()
+        time.sleep(sample_rate)
