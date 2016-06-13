@@ -23,24 +23,23 @@ def safeFloat(motion):
     return 0
 
 def is_hot(temp, baseline):
-	diff = 0
-	if(temp != None and baseline != None):
-		baseline_float = round(float(baseline), 2)
-	    temp_float = round(float(temp), 2)
-    	diff = abs(temp_float - baseline_float)
-	    print("["+str(diff) + "] "+  str(temp_float) + " - " + str(baseline_float))
-
-	return diff > baseline_threshold
+    diff = 0
+    if(temp != None and baseline != None):
+        baseline_float = round(float(baseline), 2)
+        temp_float = round(float(temp), 2)
+        diff = abs(temp_float - baseline_float)
+        print("["+str(diff) + "] "+  str(temp_float) + " - " + str(baseline_float))
+    return diff > baseline_threshold
 
 def get_status_color(blinkt, output):
-	rgb = None
-	if safeFloat(output["motion"]) > 0:
-    	rgb = blinkt.to_rgb(index, 0, 0, 255)
-	elif is_hot(output["temp"], output["temp.baseline"]):
+    rgb = None
+    if safeFloat(output["motion"]) > 0:
+        rgb = blinkt.to_rgb(index, 0, 0, 255)
+    elif is_hot(output["temp"], output["temp.baseline"]):
     	rgb = blinkt.to_rgb(index, 255, 0, 0)
-	else:
+    else:
     	rgb = blinkt.to_rgb(index, 0, 255, 0)
-	return rgb
+    return rgb
 
 while(True):
     output = sensors.read()
@@ -49,7 +48,7 @@ while(True):
     reporter.publish()
     output["temp.baseline"] = reporter.get_key(host + "temp.baseline")
     if(output["temp.baseline"] == None):
-    	output["temp.baseline"] = output["temp"]
+        output["temp.baseline"] = output["temp"]
 
     color = get_status_color(blinkt, output)
     blinkt.show_all(color)
