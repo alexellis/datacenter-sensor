@@ -7,7 +7,7 @@ class Reporter:
        self.port = port
 
        self.name = socket.getfqdn()
-       self.live_expiry = 300
+       self.live_expiry = 30
        self.quiet = quiet
 
     def get_name(self):
