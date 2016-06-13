@@ -2,15 +2,17 @@
 {% block body %}
 	<div class="list-group">
 		<table>
-                        <tr>
-				<td>Name</td>
-				<td>Temp</td>
-				<td>Baseline temp</td>
-				<td>Motion</td>
-			</td>
+            <tr>
+				<th>Name</th>
+				<th>Temp Diff</th>
+				<th>Temp</th>
+				<th>Baseline Temp</th>
+				<th>Motion</th>
+			</tr>
 		  {% for host in hosts %}
 			<tr>
 				<td>{{host["name"]}}</td>
+				<td>{{host["temp.diff"]}}</td>
 				<td>{{host["temp"]}}</td>
 				<td>{{host["temp.baseline"]}}</td>
 				<td>{{host["motion"]}}</td>
