@@ -39,11 +39,11 @@ def is_hot(temp, baseline):
 def get_status_color(blinkt, output):
     rgb = None
     if safeFloat(output["motion"]) > 0:
-        rgb = blinkt.to_rgb(index, 0, 0, 255)
+        rgb = blinkt.to_rgb(0, 0, 255)
     elif is_hot(output["temp"], output["temp.baseline"]):
-    	rgb = blinkt.to_rgb(index, 255, 0, 0)
+    	rgb = blinkt.to_rgb(255, 0, 0)
     else:
-    	rgb = blinkt.to_rgb(index, 0, 255, 0)
+    	rgb = blinkt.to_rgb(0, 255, 0)
     return rgb
 
 while(True):
