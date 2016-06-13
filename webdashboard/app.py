@@ -30,12 +30,7 @@ def build_cache(cache):
 def on_sensor_data(channel, data):
     print(".")
     build_cache(cache)
-    print("-")
-
-r = Reporter(host, 6379)
-
-r.set_on_sensor_data(on_sensor_data)
-r.subscribe()
+    # print("-")
 
 @app.route('/', methods=['GET'])
 def home():
@@ -45,3 +40,7 @@ def home():
 if __name__ == '__main__':
     print("0.0.0.0")
     app.run(debug=True, host='0.0.0.0')
+    r = Reporter(host, 6379)
+    r.set_on_sensor_data(on_sensor_data)
+
+    r.subscribe()
