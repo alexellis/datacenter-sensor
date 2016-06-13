@@ -34,7 +34,7 @@ blinkt = Blinkt(host)
 
 def sigterm_handler(_signo, _stack_frame):
     off()
-    reporting.delete(host+".live")
+    reporting.delete_key(host+".live")
     sys.exit(0)
 
 signal.signal(signal.SIGTERM, sigterm_handler)

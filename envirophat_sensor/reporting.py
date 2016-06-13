@@ -19,7 +19,7 @@ class Reporter:
     def set_live(self):
         self.set_expiring_key("live", "1", self.live_expiry)
 
-    def del_key(self, key):
+    def delete_key(self, key):
         self.client.delete(key)
 
     def announce(self):
