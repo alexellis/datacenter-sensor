@@ -99,5 +99,6 @@ r.subscribe()
 while True:
     if(quiet == False):
         print (r.find_members())
-    time.sleep(1)
+    if(len(r.find_members()) == 0):
+        clear_uh()
 

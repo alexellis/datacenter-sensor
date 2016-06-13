@@ -17,7 +17,7 @@ class Reporter:
         return self.client.get(key)
 
     def set_live(self):
-        self.set_expiring_key("live", "1", self.live_expiry)
+        self.overset_expiring_key("live", "1", self.live_expiry)
 
     def delete_key(self, key):
         self.client.delete(key)
