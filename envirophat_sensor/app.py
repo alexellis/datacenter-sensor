@@ -19,7 +19,7 @@ sensors = Sensors()
 reporter = Reporter(host, 6379)
 reporter.announce()
 
-host = reporter.get_host()
+host = reporter.get_name()
 blinkt = Blinkt(host)
 
 def safeFloat(motion):
@@ -51,6 +51,7 @@ while(True):
     print(output)
     reporter.set(output)
     reporter.publish()
+
     output["temp.baseline"] = reporter.get_key(host + "temp.baseline")
     if(output["temp.baseline"] == None):
         output["temp.baseline"] = output["temp"]
