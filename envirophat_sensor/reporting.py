@@ -41,8 +41,7 @@ class Reporter:
         exists = self.client.get(self.name+"."+key)
         if(exists==None):
             if(self.quiet == False):
-            print(key+ ", value=" + str(value))
-
+                print(key+ ", value=" + str(value))
             self.client.set(self.name+"."+key, value)
             self.client.expire(self.name+"."+key, timeout)
 
