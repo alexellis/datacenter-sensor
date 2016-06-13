@@ -20,15 +20,16 @@ host = reporter.get_host()
 def safeFloat(motion):
     if motion != None:
         return float(motion)
+    return 0
 
 def is_hot(temp, baseline):
 	diff = 0
 	if(temp != None and baseline != None):
-  	  baseline_float = round(float(baseline), 2)
+		baseline_float = round(float(baseline), 2)
 	    temp_float = round(float(temp), 2)
-
-	    diff = abs(temp_float - baseline_float)
+    	diff = abs(temp_float - baseline_float)
 	    print("["+str(diff) + "] "+  str(temp_float) + " - " + str(baseline_float))
+
 	return diff > baseline_threshold
 
 def get_status_color(blinkt, output):
