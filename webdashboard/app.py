@@ -22,7 +22,11 @@ def build_cache():
         item["temp"] = r.get_key(member + ".temp")
         item["temp.baseline"] = r.get_key(member + ".temp.baseline")
         item["motion"] = r.get_key(member + ".motion")
-        cache.append(item)
+        try:
+            item["temp.diff"] = round(abs(float(item["temp"]) - float(item["temp.baseline"])), 2)
+            cache.append(item)
+        except:
+            print("oops " + member + "has bad data")
     return cache
 
 @app.route('/json', methods=['GET'])
