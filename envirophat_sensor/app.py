@@ -22,25 +22,24 @@ def safeFloat(motion):
         return float(motion)
 
 def is_hot(temp, baseline):
-    diff = 0
-    if(temp != None and baseline != None):
-        baseline_float = round(float(baseline), 2)
-        temp_float = round(float(temp), 2)
+	diff = 0
+	if(temp != None and baseline != None):
+  	  baseline_float = round(float(baseline), 2)
+	    temp_float = round(float(temp), 2)
 
-        diff = abs(temp_float - baseline_float)
-        print("["+str(diff) + "] "+  str(temp_float) + " - " + str(baseline_float))
-    return diff > baseline_threshold
+	    diff = abs(temp_float - baseline_float)
+	    print("["+str(diff) + "] "+  str(temp_float) + " - " + str(baseline_float))
+	return diff > baseline_threshold
 
 def get_status_color(blinkt, output):
 	rgb = None
-
-    if safeFloat(output["motion"]) > 0:
-        rgb = blinkt.to_rgb(index, 0, 0, 255)
-    elif is_hot(output["temp"], output["temp.baseline"]):
-        rgb = blinkt.to_rgb(index, 255, 0, 0)
-    else:
-        rgb = blinkt.to_rgb(index, 0, 255, 0)
-    return rgb
+	if safeFloat(output["motion"]) > 0:
+    	rgb = blinkt.to_rgb(index, 0, 0, 255)
+	elif is_hot(output["temp"], output["temp.baseline"]):
+    	rgb = blinkt.to_rgb(index, 255, 0, 0)
+	else:
+    	rgb = blinkt.to_rgb(index, 0, 255, 0)
+	return rgb
 
 while(True):
     output = sensors.read()
