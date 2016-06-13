@@ -10,7 +10,9 @@ if(host== None):
     host = "redis"
 
 baseline_threshold = os.getenv("TEMP_THRESHOLD")
-if(baseline_threshold == None):
+if(baseline_threshold != None):
+    baseline_threshold = float(baseline_threshold)
+else
     baseline_threshold = 0.5
 
 sample_rate = 0.25
