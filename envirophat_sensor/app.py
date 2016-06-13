@@ -9,6 +9,10 @@ host = os.getenv("REDIS_HOST")
 if(host== None):
     host = "redis"
 
+baseline_threshold = os.getenv("TEMP_THRESHOLD")
+if(baseline_threshold == None):
+    baseline_threshold = 0.5
+
 sample_rate = 0.25
 
 sensors = Sensors()
