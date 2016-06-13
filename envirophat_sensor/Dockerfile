@@ -11,10 +11,11 @@ RUN cd Adafruit_Python_GPIO && \
 
 RUN git clone https://github.com/adafruit/Adafruit_Python_BME280
 RUN mv Adafruit_Python_BME280/* ./
-ADD ./*.py ./
 
 RUN git clone https://github.com/adafruit/Adafruit_DotStar_Pi
 RUN cd Adafruit_DotStar_Pi && \
   sudo python setup.py install
+
+ADD ./*.py ./
 
 CMD ["sudo", "-E", "python", "app.py"]
