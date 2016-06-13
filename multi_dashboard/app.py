@@ -6,9 +6,12 @@ import sys
 from reporter import Reporter
 import unicornhat as UH
 
-def sigterm_handler(_signo, _stack_frame):
+def clear_uh():
     UH.clear()
     UH.show()
+
+def sigterm_handler(_signo, _stack_frame):
+    clear_uh()
     sys.exit(0)
 
 signal.signal(signal.SIGTERM, sigterm_handler)
@@ -33,8 +36,7 @@ if(quiet!=None):
 else:
     quiet = False
 
-UH.clear()
-UH.show()
+clear_uh()
 
 r = Reporter(host, "6379")
 last_members = []

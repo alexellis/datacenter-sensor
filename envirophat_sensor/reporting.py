@@ -19,6 +19,9 @@ class Reporter:
     def set_live(self):
         self.set_expiring_key("live", "1", self.live_expiry)
 
+    def del_key(self, key):
+        self.client.delete(key)
+
     def announce(self):
         self.client = redis.StrictRedis(host=self.host, port=self.port, db=0)
         self.set_live()
@@ -32,6 +35,7 @@ class Reporter:
         self.client.set(self.name+"."+key, round(value, 2))
 
     def overset_expiring_key(self, key, value, timeout):
+
         self.client.set(self.name+"."+key, value)
         self.client.expire(self.name+"."+key, timeout)  
 
