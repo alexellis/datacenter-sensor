@@ -14,7 +14,7 @@ if(host == None):
 baseline_threshold = os.getenv("TEMP_THRESHOLD")
 if(baseline_threshold != None):
     baseline_threshold = float(baseline_threshold)
-else
+else:
     baseline_threshold = 0.5
 
 UH.clear()
