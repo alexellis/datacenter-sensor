@@ -1,7 +1,17 @@
 import time
-from reporter import Reporter
 import os
+import signal
+import sys
+
+from reporter import Reporter
 import unicornhat as UH
+
+def sigterm_handler(_signo, _stack_frame):
+    UH.clear()
+    UH.show()
+    sys.exit(0)
+
+signal.signal(signal.SIGTERM, sigterm_handler)
 
 # UH.set_layout(UH.PHAT)
 #max_pixels = 4
