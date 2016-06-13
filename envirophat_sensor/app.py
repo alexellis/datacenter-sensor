@@ -34,9 +34,9 @@ def is_hot(temp, baseline):
 def get_status_color(blinkt, output):
 	rgb = None
 
-    if safeFloat(output[host + ".motion"]) > 0:
+    if safeFloat(output["motion"]) > 0:
         rgb = blinkt.to_rgb(index, 0, 0, 255)
-    elif is_hot(output[host + ".temp"], output[host + "temp.baseline"]):
+    elif is_hot(output["temp"], output["temp.baseline"]):
         rgb = blinkt.to_rgb(index, 255, 0, 0)
     else:
         rgb = blinkt.to_rgb(index, 0, 255, 0)
@@ -48,6 +48,9 @@ while(True):
     reporter.set(output)
     reporter.publish()
     output["temp.baseline"] = reporter.get_key(host + "temp.baseline")
+    if(output["temp.baseline"] == None):
+    	output["temp.baseline"] = output["temp"]
+
     color = get_status_color(blinkt, output)
     blinkt.show_all(color)
 
