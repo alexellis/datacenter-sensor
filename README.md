@@ -65,6 +65,7 @@ Profit.
 
 Descending date of release.
 
+* [Starting up the demo - LED animations](https://twitter.com/alexellisuk/status/742411122591051777)
 * [Scaling-up monitoring two sensors](https://twitter.com/alexellisuk/status/741224768087674880)
 * [Detecting motion](https://twitter.com/alexellisuk/status/740824510849503232)
 * [Detecting temperature and showing alerts](https://twitter.com/alexellisuk/status/739736197442981888)
