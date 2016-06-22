@@ -59,6 +59,14 @@ $ docker-compose up -d
 
 #### Step 4
 
+Then once running you can scale up the sensor service to the number of sensor Pis in your network.
+
+```
+$ docker-compose scale sensor=4
+```
+
+#### Step 5
+
 Profit.
 
 ### Sneak previews:
