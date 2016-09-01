@@ -8,23 +8,23 @@ services:
     networks:
       - frontend
     environment:
-      - "constraint:demo.dashboard==1"
+      - "constraint:demo.web==1"
 
-  webdashboard:
+  web:
     build:
       context: "./webdashboard/"
     networks:
       - frontend
     privileged: true
     environment:
-      - "constraint:demo.dashboard==1"
+      - "constraint:demo.web==1"
       - QUIET=True
     ports:
-      - "5000:5000"
+      - "5001:5000"
     depends_on:
       - redis
 
-  unicorndashboard:
+  unicorn:
     build:
       context: "./multi_dashboard/"
     networks:
@@ -50,6 +50,7 @@ services:
       - QUIET=True
     depends_on:
       - redis
+
 networks:
   frontend:
     driver: overlay
