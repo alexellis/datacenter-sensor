@@ -15,10 +15,14 @@ export eth0_addr=$(ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d
 export node_ip=$eth0_addr:2375
 
 echo "Removing old container"
-
 docker rm -f join
 
-export image=hypriot/rpi-swarm:v1.2.4
+if [[ -z $swarm_version ]]; then
+        export swarm_version="v6"
+fi;
+
+echo "Using version: $swarm_version"
+export image=alexellis2/swarm-arm:$swarm_version
 
 echo "Starting new container"
 
