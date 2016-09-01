@@ -3,6 +3,7 @@ WORKDIR /root/
 
 RUN sudo pip install redis
 
+ADD ./js/ ./js/
 ADD ./*.py ./
 ADD ./templates/ ./templates/
 EXPOSE 5000

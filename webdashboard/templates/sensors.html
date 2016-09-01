@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body %}
+<div ng-controller="SensorsController">
+  {% raw %}
+
+  <div>
+    <canvas id="sensorCanvas" width="800" height="150"></canvas>
+  </div>
+  <div class="list-group">
+    <table>
+      <tr>
+        <th>Name</th>
+	<th>Temp Diff</th>
+	<th>Temp</th>
+	<th>Baseline Temp</th>
+	<th>Motion</th>
+      </tr>
+      <tr ng-repeat="sensor in sensors">
+        <td>{{ sensor["name"] }}</td>
+        <td>{{ sensor["temp.diff"].toFixed(2) }}</td>
+        <td>{{ sensor["temp"].toFixed(2) }}</td>
+        <td>{{ sensor["temp.baseline"].toFixed(2) }}</td>
+        <td>{{ sensor["motion"].toFixed(3) }}</td>
+      </tr>
+    </table>
+  </div>
+
+  {% endraw %}
+</div>
+{% endblock %}
