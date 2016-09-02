@@ -3,19 +3,19 @@
 <div ng-controller="SensorsController">
   {% raw %}
 
-  <div>
+  <div id="sensorCanvasContainer">
     <canvas id="sensorCanvas" width="800" height="150"></canvas>
   </div>
   <div class="list-group">
-    <table>
-      <tr>
+    <table id="sensor_table" width="800">
+      <tr class="sensor_heading">
         <th>Name</th>
 	<th>Temp Diff</th>
 	<th>Temp</th>
 	<th>Baseline Temp</th>
 	<th>Motion</th>
       </tr>
-      <tr ng-repeat="sensor in sensors">
+      <tr ng-repeat="sensor in sensors" class="sensor_row">
         <td>{{ sensor["name"] }}</td>
         <td>{{ sensor["temp.diff"].toFixed(2) }}</td>
         <td>{{ sensor["temp"].toFixed(2) }}</td>
