@@ -25,11 +25,15 @@ Come to the live demo at Dockercon for all the rest of the details. We'll have a
 
 [Visualizing a production-ready load-balancer with LEDs and Docker Swarm](http://blog.alexellis.io/iot-docker-cluster/)
 
+### Contributions
+
+I'm not accepting pull-requests to the demo code at present, but feel free to fork it or re-use elements in your own projects in-line with the MIT license. 
+
 ### Booting up the demo
 
 #### Step 1
 
-Start the Docker Swarm manager and supporting consul KeyValueStore
+Log into the manager and start the Docker Swarm manager image and consul as a key-value store with this shell script:
 
 ```
 $ datacenter-sensor/start_manage.sh
@@ -37,7 +41,7 @@ $ datacenter-sensor/start_manage.sh
 
 #### Step 2
 
-Start the Swarm Agents on each sensor Pi Zero
+Log into each additional Pi Zero and launc the Swarm Agent:
 
 ```
 $ datacenter-sensor/join/auto_join.sh
@@ -68,6 +72,10 @@ $ docker-compose scale sensor=4
 #### Step 5
 
 Profit.
+
+If you want to open the web-dashboard, then use `docker-compose ps` to find where it has been placed in the swarm and which port has been dynamically assigned to it.
+
+When you're done you can use `docker-compose stop` to pause the demo or `docker-compose down` to clean everything up. 
 
 ### Sneak previews:
 
